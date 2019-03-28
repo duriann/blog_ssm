@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 public interface CategoryMapper {
     @Delete({
         "delete from category",
@@ -16,11 +18,11 @@ public interface CategoryMapper {
 
     @Insert({
         "insert into category (id, name, ",
-        "parent_id, create_ime, ",
-        "update_time)",
+        "level, parent_id, ",
+        "create_ime, update_time)",
         "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
-        "#{parentId,jdbcType=INTEGER}, #{createIme,jdbcType=TIMESTAMP}, ",
-        "#{updateTime,jdbcType=TIMESTAMP})"
+        "#{level,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, ",
+        "#{createIme,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})"
     })
     int insert(Category record);
 
@@ -28,7 +30,7 @@ public interface CategoryMapper {
 
     @Select({
         "select",
-        "id, name, parent_id, create_ime, update_time",
+        "id, name, level, parent_id, create_ime, update_time",
         "from category",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -40,10 +42,13 @@ public interface CategoryMapper {
     @Update({
         "update category",
         "set name = #{name,jdbcType=VARCHAR},",
+          "level = #{level,jdbcType=INTEGER},",
           "parent_id = #{parentId,jdbcType=INTEGER},",
           "create_ime = #{createIme,jdbcType=TIMESTAMP},",
           "update_time = #{updateTime,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Category record);
+
+    List<Category> selectAll();
 }

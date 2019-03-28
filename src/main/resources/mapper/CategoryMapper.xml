@@ -1,69 +1,113 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bolo.dao.CategoryMapper" >
-  <resultMap id="BaseResultMap" type="com.bolo.entitys.Category" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-    <result column="create_ime" property="createIme" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bolo.dao.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.bolo.entitys.Category">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="create_ime" jdbcType="TIMESTAMP" property="createIme" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <collection property="children" javaType="java.util.ArrayList" column="id"
+                ofType="Category" select="childrenSelect"/>
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, name, parent_id, create_ime, update_time
+
+
+  <resultMap id="childrenResult" type="com.bolo.entitys.Category">
+    <id property="id" column="ID"/>
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <collection property="children" javaType="java.util.ArrayList" column="id"
+                ofType="com.bolo.entitys.Category" select="childrenSelect"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, name, level, parent_id, create_ime, update_time
   </sql>
-  <insert id="insertSelective" parameterType="com.bolo.entitys.Category" >
+
+  <select id="childrenSelect" resultMap="childrenResult">
+    SELECT <include refid="Base_Column_List" />
+    FROM category
+    WHERE parent_id = #{id}
+    ORDER BY ID ASC
+  </select>
+
+  <!--树形结构获取所有分类-->
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select
+    <include refid="Base_Column_List"/>
+    from category where level  = 0
+
+  </select>
+
+  <insert id="insertSelective" parameterType="com.bolo.entitys.Category">
     insert into category
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="parentId != null" >
+      <if test="level != null">
+        level,
+      </if>
+      <if test="parentId != null">
         parent_id,
       </if>
-      <if test="createIme != null" >
+      <if test="createIme != null">
         create_ime,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null" >
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
         #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="createIme != null" >
+      <if test="createIme != null">
         #{createIme,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bolo.entitys.Category" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.bolo.entitys.Category">
     update category
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null" >
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="createIme != null" >
+      <if test="createIme != null">
         create_ime = #{createIme,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -1,17 +1,30 @@
 package com.bolo.entitys;
 
 import java.util.Date;
+import java.util.List;
 
 public class Category {
     private Integer id;
 
     private String name;
 
+    private Integer level;
+
     private Integer parentId;
 
     private Date createIme;
 
     private Date updateTime;
+
+    private List<Category> children;
+
+    public List<Category> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Category> children) {
+        this.children = children;
+    }
 
     public Integer getId() {
         return id;
@@ -27,6 +40,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public Integer getParentId() {
