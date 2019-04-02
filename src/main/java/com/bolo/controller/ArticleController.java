@@ -3,6 +3,7 @@ package com.bolo.controller;
 import com.alibaba.fastjson.JSON;
 import com.bolo.entitys.Article;
 import com.bolo.entitys.JSONResponse;
+import com.bolo.entitys.Page;
 import com.bolo.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,12 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+
+    /****
+     * 添加文章
+     * @param param
+     * @return
+     */
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
     public JSONResponse add(@RequestBody String param){
@@ -35,4 +42,28 @@ public class ArticleController {
         }
         return JSONResponse.error("发表失败!");
     }
+
+    /**
+     * 分页获取article
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/listByPage",method = RequestMethod.GET )
+    public JSONResponse listByPage(String keyword, int currPage, int pageSize){
+        Page<Article> users = articleService.listByPage(keyword,currPage,pageSize);
+        return JSONResponse.success(users);
+    }
+
+
+    /**
+     * 根据id获取article
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/get",method = RequestMethod.GET )
+    public JSONResponse listByPage(int id){
+        Article article = articleService.getById(id);
+        return JSONResponse.success(article);
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.bolo.entitys;
 
+import com.bolo.entitys.Category;
+
 import java.util.Date;
 
 public class Article {
@@ -17,9 +19,44 @@ public class Article {
 
     private Date updateTime;
 
-    private Integer like;
 
     private Integer categoryId;
+
+    private String headImg;
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", commentId='" + commentId + '\'' +
+                ", content='" + content + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", categoryId=" + categoryId +
+                ", headImg='" + headImg + '\'' +
+                ", category=" + category +
+                '}';
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    private Category category;
 
     public Integer getId() {
         return id;
@@ -75,14 +112,6 @@ public class Article {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Integer getLike() {
-        return like;
-    }
-
-    public void setLike(Integer like) {
-        this.like = like;
     }
 
     public Integer getCategoryId() {

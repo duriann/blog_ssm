@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ArticleMapper {
     @Delete({
         "delete from article",
@@ -54,4 +57,8 @@ public interface ArticleMapper {
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Article record);
+
+    List<Article> selectAllByPage(Map map);
+    int getArticleTotalCount(Map map);
+    Article selectById(int id);
 }

@@ -1,49 +1,120 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bolo.dao.CommentMapper" >
-  <resultMap id="BaseResultMap" type="com.bolo.entitys.Comment" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="article_id" property="articleId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bolo.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.bolo.entitys.Comment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="user_name" jdbcType="VARCHAR" property="username"/>
+    <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
+    <collection property="children" javaType="java.util.ArrayList" column="id"
+                ofType="com.bolo.entitys.Comment" select="childrenSelect"/>
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, article_id, user_id
+
+  <resultMap id="childrenResult" type="com.bolo.entitys.Comment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="user_name" jdbcType="VARCHAR" property="username"/>
+    <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
+    <collection property="children" javaType="java.util.ArrayList" column="id"
+                ofType="com.bolo.entitys.Comment" select="childrenSelect"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, article_id, user_id, parent_id, content, create_time, update_time, user_name, parent_name
   </sql>
-  <insert id="insertSelective" parameterType="com.bolo.entitys.Comment" >
+
+  <select id="selectCommentsByArticleId" resultMap="BaseResultMap" parameterType="int">
+    select <include refid="Base_Column_List"/>
+    from comment
+    where article_id = #{id} and parent_id is null
+  </select>
+  <select id="childrenSelect" resultMap="childrenResult">
+    select <include refid="Base_Column_List"/>
+    from comment
+    where parent_id = #{id}
+    order by id asc
+  </select>
+  <insert id="insertSelective" parameterType="com.bolo.entitys.Comment">
     insert into comment
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="articleId != null" >
+      <if test="articleId != null">
         article_id,
       </if>
-      <if test="userId != null" >
+      <if test="userId != null">
         user_id,
       </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="articleId != null" >
+      <if test="articleId != null">
         #{articleId,jdbcType=INTEGER},
       </if>
-      <if test="userId != null" >
+      <if test="userId != null">
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bolo.entitys.Comment" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.bolo.entitys.Comment">
     update comment
-    <set >
-      <if test="articleId != null" >
+    <set>
+      <if test="articleId != null">
         article_id = #{articleId,jdbcType=INTEGER},
       </if>
-      <if test="userId != null" >
+      <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>
