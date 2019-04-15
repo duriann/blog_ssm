@@ -10,4 +10,6 @@ public interface UserService {
     List<User> listAll();
 
     Page<User> listByPage(String keyword, int currPage, int pageSize);
+
+    User login(String username,String password);
 }

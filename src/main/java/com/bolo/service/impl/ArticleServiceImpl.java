@@ -38,11 +38,8 @@ public class ArticleServiceImpl implements ArticleService {
         System.out.println("articles: " + articles);
         int totalCount = articleMapper.getArticleTotalCount(map);
         System.out.println("totalCount: " + totalCount);
-        Page<Article> page = new Page<>();
-        page.setCurrentPage(currPage);
-        page.setPageSize(pageSize);
-        page.setPages(articles);
-        page.setTotalCount(totalCount);
+        Page<Article> page = new Page<>(currPage,pageSize,totalCount,articles);
+
         return page;
     }
 

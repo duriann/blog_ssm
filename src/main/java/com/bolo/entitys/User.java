@@ -13,6 +13,16 @@ public class User {
 
     private Date updateTime;
 
+    private String realpwd;
+
+    public String getRealpwd() {
+        return realpwd;
+    }
+
+    public void setRealpwd(String realpwd) {
+        this.realpwd = realpwd;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -39,6 +49,18 @@ public class User {
 
     public Date getCreateTime() {
         return createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", realpwd='" + realpwd + '\'' +
+                '}';
     }
 
     public void setCreateTime(Date createTime) {

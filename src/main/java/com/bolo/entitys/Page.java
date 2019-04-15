@@ -14,6 +14,12 @@ public class Page<T> {
     //总记录数
     private int totalCount;
 
+    public Page(int currentPage, int pageSize, int totalCount, List<T> pages) {
+        this.currentPage = currentPage;
+        this.pageSize = pageSize;
+        this.totalCount = totalCount;
+        this.pages = pages;
+    }
 
     private List<T> pages = new ArrayList<>();
 

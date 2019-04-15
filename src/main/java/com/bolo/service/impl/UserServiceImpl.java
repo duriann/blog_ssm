@@ -38,12 +38,17 @@ public class UserServiceImpl implements UserService {
         System.out.println("users: "+users);
         int totalCount = userMapper.getUserTotalCount(map);
         System.out.println("totalCount: " + totalCount);
-        Page<User> page = new Page<>();
-        page.setCurrentPage(currPage);
-        page.setPageSize(pageSize);
-        page.setPages(users);
-        page.setTotalCount(totalCount);
-
+        Page<User> page = new Page<>(currPage,pageSize,totalCount,users);
         return page;
     }
+
+    @Override
+    public User login(String username, String password) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("username",username);
+        map.put("password",password);
+        return userMapper.login(map);
+    }
+
+
 }

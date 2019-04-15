@@ -56,4 +56,5 @@ public interface UserMapper {
 
     int getUserTotalCount(Map map);
 
+    User login(Map map);
 }
