@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CommentService {
     List<Comment> getCommentsByArticleId(int id);
+    int add(Comment comment);
 }

@@ -22,6 +22,22 @@ public class Comment {
 
     private String username;
 
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", articleId=" + articleId +
+                ", userId=" + userId +
+                ", parentId=" + parentId +
+                ", content='" + content + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", children=" + children +
+                ", username='" + username + '\'' +
+                ", parentName='" + parentName + '\'' +
+                '}';
+    }
+
     private String parentName;
 
     public String getParentName() {

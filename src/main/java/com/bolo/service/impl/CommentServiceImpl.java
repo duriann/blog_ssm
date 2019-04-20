@@ -18,4 +18,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getCommentsByArticleId(int id) {
         return commentMapper.selectCommentsByArticleId(id);
     }
+
+    @Override
+    public int add(Comment comment) {
+        return commentMapper.insertSelective(comment);
+    }
 }
