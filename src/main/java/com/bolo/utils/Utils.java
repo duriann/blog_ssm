@@ -3,11 +3,20 @@ package com.bolo.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
 
+
+    /**
+     * 获取用户uid
+     * @return uid
+     */
+    public static String getUid(){
+        return UUID.randomUUID().toString().replaceAll("-","");
+    }
 
     /**
      * 根据html的src 属性提取出url
@@ -41,10 +50,10 @@ public class Utils {
 
 	public static void main(String[] args) {
 
-		String str = "<p><img src=\"http://localhost:8080//statics/images/WX20190320-125533@2x.png\" style=\"\" width=\"569\"></p><p>dadsadas</p>";
-
-		System.out.println( getImgSrc(str).get(0) );
-
+//		String str = "<p><img src=\"http://localhost:8080//statics/images/WX20190320-125533@2x.png\" style=\"\" width=\"569\"></p><p>dadsadas</p>";
+//
+//		System.out.println( getImgSrc(str).get(0) );
+        System.out.println(getUid().replaceAll("-",""));
 	}
 
 

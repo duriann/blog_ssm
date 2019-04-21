@@ -5,6 +5,16 @@ import java.util.Date;
 public class User {
     private Integer id;
 
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     private String name;
 
     private String password;
@@ -55,6 +65,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", uid='" + uid + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", createTime=" + createTime +

@@ -66,9 +66,9 @@ public class UserController {
         User user = userService.login(username, md5Pwd);
         if (user !=null){
             System.out.println(user);
+            request.getSession().setAttribute(user.getUid(),user);
             return JSONResponse.success(user,"登录成功");
         }
-        request.getSession().setAttribute(username,username);
         return JSONResponse.error("用户名或者密码错误!");
     }
 
@@ -83,4 +83,19 @@ public class UserController {
         return publicKey;
     }
 
+    /**
+     * 退出
+     * @return json
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONResponse logout(HttpServletRequest request, String uid){
+        System.out.println("uid:" + uid);
+        User user = (User) request.getSession().getAttribute(uid);
+        if (user!=null){
+            request.getSession().removeAttribute(uid);
+            return JSONResponse.success(null,"退出成功");
+        }
+        return JSONResponse.error("推出失败");
+    }
 }
