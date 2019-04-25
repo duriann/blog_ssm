@@ -61,4 +61,6 @@ public interface ArticleMapper {
     List<Article> selectAllByPage(Map map);
     int getArticleTotalCount(Map map);
     Article selectById(int id);
+
+    List<Article> selectRecent();
 }

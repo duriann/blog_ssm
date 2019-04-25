@@ -10,7 +10,7 @@ public class JSONResponse {
         JSONResponse response = new JSONResponse();
         response.setCode(0);
         response.setData(data);
-        response.setMsg("获取成功!");
+        response.setMsg("success!");
         return response;
     }
     public static JSONResponse success(Object data,String msg) {

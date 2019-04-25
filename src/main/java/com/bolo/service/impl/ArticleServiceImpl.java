@@ -47,4 +47,9 @@ public class ArticleServiceImpl implements ArticleService {
     public Article getById(int id) {
         return articleMapper.selectById(id);
     }
+
+    @Override
+    public List<Article> selectRecent() {
+        return articleMapper.selectRecent();
+    }
 }

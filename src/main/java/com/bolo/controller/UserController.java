@@ -96,6 +96,6 @@ public class UserController {
             request.getSession().removeAttribute(uid);
             return JSONResponse.success(null,"退出成功");
         }
-        return JSONResponse.error("推出失败");
+        return JSONResponse.error("退出失败");
     }
 }

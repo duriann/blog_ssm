@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,6 +21,17 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+
+    /**
+     * 获取最新的5条文章
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getRecent",method = RequestMethod.GET )
+    public JSONResponse getRecent(){
+        List<Article> articles = articleService.selectRecent();
+        return JSONResponse.success(articles);
+    }
 
     /****
      * 添加文章

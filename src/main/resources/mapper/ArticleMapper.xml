@@ -21,6 +21,13 @@
     id, title, author, comment_id, content, create_time, update_time, category_id,head_img
   </sql>
 
+  <select id="selectRecent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    order by create_time desc
+    limit 5
+  </select>
   <select id="selectById" resultType="Article" parameterType="int">
     select
     <include refid="Base_Column_List"/>
