@@ -6,6 +6,26 @@ import java.util.List;
 public class Category {
     private Integer id;
 
+    private Integer isNav;
+
+    private String url;//作为导航需要的url
+
+    public Integer getIsNav() {
+        return isNav;
+    }
+
+    public void setIsNav(Integer isNav) {
+        this.isNav = isNav;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     private String name;
 
     private Integer level;

@@ -3,6 +3,8 @@
 <mapper namespace="com.bolo.dao.CategoryMapper">
   <resultMap id="BaseResultMap" type="com.bolo.entitys.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="isNav" jdbcType="INTEGER" property="isNav" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
@@ -15,6 +17,8 @@
 
   <resultMap id="childrenResult" type="com.bolo.entitys.Category">
     <id property="id" column="ID"/>
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="isNav" jdbcType="INTEGER" property="isNav" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="path" property="path" jdbcType="VARCHAR" />
@@ -26,7 +30,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, name, level, parent_id, create_ime, update_time
+    id, name, url, isNav, level, parent_id, create_ime, update_time
   </sql>
 
   <select id="childrenSelect" resultMap="childrenResult">
@@ -42,6 +46,7 @@
     select
     <include refid="Base_Column_List"/>
     from category where level  = 0
+    order by sort asc
 
   </select>
 
