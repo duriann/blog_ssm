@@ -14,7 +14,7 @@
 	<context:component-scan base-package="com.bolo.controller" />
 	<!-- 配置HandlerMapping -->
 	<mvc:annotation-driven />
-
+	<mvc:default-servlet-handler/>
 	<mvc:resources mapping="/statics/**" location="/statics/"/>
 	<!---aop自动代理-->
     <aop:aspectj-autoproxy/>
