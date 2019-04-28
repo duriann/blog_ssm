@@ -63,4 +63,5 @@ public interface ArticleMapper {
     Article selectById(int id);
 
     List<Article> selectRecent();
+
 }

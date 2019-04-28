@@ -23,12 +23,18 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> listByPage(String keyword, int currPage, int pageSize) {
+    public Page<Article> listByPage(String keyword, int currPage, int pageSize, Integer categoryId,Integer parentId) {
         System.out.println("keyword" + keyword + "currPage: " + currPage);
         Map<String, Object> map = new HashMap<>();
         if (keyword != null && !"".equals(keyword)){
             keyword = keyword + "%";
             map.put("keyword", keyword);
+        }
+        if (categoryId != null){
+            map.put("categoryId", categoryId);
+        }
+        if (parentId != null){
+            map.put("parentId", parentId);
         }
         map.put("currPage", currPage);
         map.put("pageSize", pageSize);

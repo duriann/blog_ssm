@@ -61,8 +61,8 @@ public class ArticleController {
      */
     @ResponseBody
     @RequestMapping(value = "/listByPage",method = RequestMethod.GET )
-    public JSONResponse listByPage(String keyword, int currPage, int pageSize){
-        Page<Article> users = articleService.listByPage(keyword,currPage,pageSize);
+    public JSONResponse listByPage(String keyword, int currPage, int pageSize, Integer categoryId, Integer parentId){
+        Page<Article> users = articleService.listByPage(keyword,currPage,pageSize,categoryId,parentId);
         return JSONResponse.success(users);
     }
 

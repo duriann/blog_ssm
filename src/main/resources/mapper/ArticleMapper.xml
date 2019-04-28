@@ -41,6 +41,12 @@
     <if test="keyword != null" >
       where name like #{keyword}
     </if>
+    <if test="parentId != null" >
+      where category_id in (select id from category where parent_id = #{parentId})
+    </if>
+    <if test="categoryId != null" >
+      where category_id = #{categoryId}
+    </if>
     order by create_time desc
     LIMIT ${(currPage-1)*pageSize},${pageSize}
 
@@ -51,6 +57,9 @@
     from article
     <if test="keyword != null" >
       where name like #{keyword}
+    </if>
+    <if test="categoryId != null" >
+      where category_id in (select id from category where parent_id = #{categoryId})
     </if>
   </select>
 
