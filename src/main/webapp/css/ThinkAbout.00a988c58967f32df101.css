@@ -1,0 +1,51 @@
+.social[data-v-a98be2a2] {
+  display: flex;
+}
+.social a[data-v-a98be2a2] {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  padding: 10px 6px;
+  background-color: #fff;
+}
+.social a i[data-v-a98be2a2] {
+  display: block;
+  height: 100%;
+  font-size: 30px;
+  color: #fff;
+  border-radius: 5px;
+}
+.social a .icon-weibo[data-v-a98be2a2] {
+  background: #f78585;
+}
+.social a .icon-weixin[data-v-a98be2a2] {
+  background: #6fc299;
+}
+.social a .icon-youxiang[data-v-a98be2a2] {
+  background: #eca3ac;
+}
+.social a .icon-qq[data-v-a98be2a2] {
+  background: #e74c3c;
+}
+
+.common .main[data-v-215de179] {
+  justify-content: space-between;
+  display: flex;
+}
+.common .main .left[data-v-215de179] {
+  flex: 1;
+}
+.common .main .left .article[data-v-215de179] {
+  margin-bottom: 10px;
+}
+.common .main .right[data-v-215de179] {
+  margin-left: 10px;
+}
+.common .main .right .social[data-v-215de179] {
+  margin-bottom: 10px;
+}
+.common .main .right .widget[data-v-215de179] {
+  margin-bottom: 10px;
+}
+

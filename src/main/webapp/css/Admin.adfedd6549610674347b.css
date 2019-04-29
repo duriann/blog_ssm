@@ -1,0 +1,34 @@
+.home-container[data-v-2d40d930],
+.home-content[data-v-2d40d930],
+.home-aside[data-v-2d40d930],
+.home-main[data-v-2d40d930],
+.home-aside .menu[data-v-2d40d930] {
+  height: 100%;
+}
+.home-header[data-v-2d40d930] {
+  line-height: 60px;
+  background-color: #b3c1cd;
+  font-weight: bolder;
+}
+.home-header .logo[data-v-2d40d930] {
+  min-width: 180px;
+}
+.home-header img[data-v-2d40d930] {
+  height: 60px;
+  vertical-align: middle;
+}
+.home-header .title[data-v-2d40d930] {
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+}
+.home-header .logout[data-v-2d40d930] {
+  color: #b07a17;
+}
+.home-aside[data-v-2d40d930] {
+  background-color: #d4dfe4;
+}
+.home-content[data-v-2d40d930] {
+  background-color: #eaeef1;
+}
+
