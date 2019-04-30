@@ -62,7 +62,7 @@
       where category_id in (select id from category where parent_id = #{parentId})
     </if>
     <if test="categoryId != null" >
-      where category_id in (select id from category where parent_id = #{categoryId})
+      where category_id = #{categoryId}
     </if>
   </select>
 

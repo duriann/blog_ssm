@@ -3,3 +3,7 @@ target
 .idea
 .classpath
 .project
+src/main/webapp/css
+src/main/webapp/imgs
+src/main/webapp/js
+src/main/webapp/index*
