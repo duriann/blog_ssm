@@ -16,6 +16,8 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	<mvc:resources mapping="/statics/**" location="/statics/"/>
+	<!--<mvc:resources mapping="/index.html" location="/index.html"/>-->
+
 	<!---aop自动代理-->
     <aop:aspectj-autoproxy/>
 
