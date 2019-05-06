@@ -23,17 +23,17 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> listByPage(String keyword, int currPage, int pageSize, Integer categoryId,Integer parentId) {
+    public Page<Article> listByPage(String keyword, int currPage, int pageSize, Integer categoryId, Integer parentId) {
         System.out.println("keyword" + keyword + "currPage: " + currPage);
         Map<String, Object> map = new HashMap<>();
-        if (keyword != null && !"".equals(keyword)){
+        if (keyword != null && !"".equals(keyword)) {
             keyword = keyword + "%";
             map.put("keyword", keyword);
         }
-        if (categoryId != null){
+        if (categoryId != null) {
             map.put("categoryId", categoryId);
         }
-        if (parentId != null){
+        if (parentId != null) {
             map.put("parentId", parentId);
         }
         map.put("currPage", currPage);
@@ -44,13 +44,13 @@ public class ArticleServiceImpl implements ArticleService {
         System.out.println("articles: " + articles);
         int totalCount = articleMapper.getArticleTotalCount(map);
         System.out.println("totalCount: " + totalCount);
-        Page<Article> page = new Page<>(currPage,pageSize,totalCount,articles);
+        Page<Article> page = new Page<>(currPage, pageSize, totalCount, articles);
 
         return page;
     }
 
     @Override
-    public Article getById(int id) {
+    public List<Article> getById(int id) {
         return articleMapper.selectById(id);
     }
 

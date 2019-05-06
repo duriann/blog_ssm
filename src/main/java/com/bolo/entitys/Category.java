@@ -32,6 +32,16 @@ public class Category {
 
     private Integer parentId;
 
+    private String parentUrl;
+
+    public String getParentUrl() {
+        return parentUrl;
+    }
+
+    public void setParentUrl(String parentUrl) {
+        this.parentUrl = parentUrl;
+    }
+
     private Date createIme;
 
     private Date updateTime;

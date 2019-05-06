@@ -24,6 +24,16 @@ public class Article {
 
     private String headImg;
 
+    private String totalComment;
+
+    public String getTotalComment() {
+        return totalComment;
+    }
+
+    public void setTotalComment(String totalComment) {
+        this.totalComment = totalComment;
+    }
+
     public String getHeadImg() {
         return headImg;
     }

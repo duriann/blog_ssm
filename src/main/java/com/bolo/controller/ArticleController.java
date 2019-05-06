@@ -24,11 +24,12 @@ public class ArticleController {
 
     /**
      * 获取最新的5条文章
+     *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/getRecent",method = RequestMethod.GET )
-    public JSONResponse getRecent(){
+    @RequestMapping(value = "/getRecent", method = RequestMethod.GET)
+    public JSONResponse getRecent() {
         List<Article> articles = articleService.selectRecent();
         return JSONResponse.success(articles);
     }
@@ -38,43 +39,45 @@ public class ArticleController {
      * @param param
      * @return
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public JSONResponse add(@RequestBody String param){
-        System.out.println("param "+ param );
-        Map obj = (Map)JSON.parse(param);
+    public JSONResponse add(@RequestBody String param) {
+        System.out.println("param " + param);
+        Map obj = (Map) JSON.parse(param);
         Article article = new Article();
         article.setTitle((String) obj.get("title"));
         article.setAuthor("admin");
         article.setCategoryId((int) obj.get("categoryId"));
         article.setContent((String) obj.get("content"));
         int code = articleService.addArticle(article);
-        if (code == 1){
-            return JSONResponse.success(null,"发表成功!");
+        if (code == 1) {
+            return JSONResponse.success(null, "发表成功!");
         }
         return JSONResponse.error("发表失败!");
     }
 
     /**
      * 分页获取article
+     *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/listByPage",method = RequestMethod.GET )
-    public JSONResponse listByPage(String keyword, int currPage, int pageSize, Integer categoryId, Integer parentId){
-        Page<Article> users = articleService.listByPage(keyword,currPage,pageSize,categoryId,parentId);
+    @RequestMapping(value = "/listByPage", method = RequestMethod.GET)
+    public JSONResponse listByPage(String keyword, int currPage, int pageSize, Integer categoryId, Integer parentId) {
+        Page<Article> users = articleService.listByPage(keyword, currPage, pageSize, categoryId, parentId);
         return JSONResponse.success(users);
     }
 
 
     /**
      * 根据id获取article
+     *
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/get",method = RequestMethod.GET )
-    public JSONResponse listByPage(int id){
-        Article article = articleService.getById(id);
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public JSONResponse listByPage(int id) {
+        Article article = articleService.getById(id).get(0);
         return JSONResponse.success(article);
     }
 
