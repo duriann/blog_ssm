@@ -42,7 +42,7 @@
     <select id="selectAllByPage" resultMap="BaseResultMap" parameterType="map">
         select
         a.id, title, author, comment_id, c.name ,a.content, a.create_time, a.update_time, category_id,head_img
-        ,count(a.id) as total_comment
+        ,count(co.id) as total_comment
         from article a left join category c
         on a.category_id = c.id
         left join comment co on co.article_id = a.id

@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/article")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
@@ -28,7 +27,7 @@ public class ArticleController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/getRecent", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/getRecent", method = RequestMethod.GET)
     public JSONResponse getRecent() {
         List<Article> articles = articleService.selectRecent();
         return JSONResponse.success(articles);
@@ -39,7 +38,7 @@ public class ArticleController {
      * @param param
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/article/add", method = RequestMethod.POST)
     @ResponseBody
     public JSONResponse add(@RequestBody String param) {
         System.out.println("param " + param);
@@ -62,7 +61,7 @@ public class ArticleController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/listByPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/listByPage", method = RequestMethod.GET)
     public JSONResponse listByPage(String keyword, int currPage, int pageSize, Integer categoryId, Integer parentId) {
         Page<Article> users = articleService.listByPage(keyword, currPage, pageSize, categoryId, parentId);
         return JSONResponse.success(users);
@@ -75,7 +74,7 @@ public class ArticleController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/get", method = RequestMethod.GET)
     public JSONResponse listByPage(int id) {
         Article article = articleService.getById(id).get(0);
         return JSONResponse.success(article);

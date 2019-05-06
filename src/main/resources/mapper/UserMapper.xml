@@ -12,7 +12,7 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
-      id, name, uid, password, create_time, update_time
+      id, name, uid, password, create_time, update_time,nickname
     </sql>
 
     <select id="selectAll" resultMap="BaseResultMap">
@@ -24,7 +24,7 @@
 
     <select id="login" resultType="User" parameterType="map">
         select
-        <include refid="Base_Column_List"/>
+        uid,name,nickname,create_time,update_time
         from user
         where name = #{username} and password = #{password}
 

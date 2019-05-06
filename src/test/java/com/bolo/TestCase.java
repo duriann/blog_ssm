@@ -2,6 +2,7 @@ package com.bolo;
 
 
 import com.bolo.utils.Constants;
+import com.bolo.utils.JWTUtil;
 import com.bolo.utils.RSAUtils;
 import com.bolo.utils.Utils;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -32,5 +33,12 @@ public class TestCase {
     @Test
     public void testUid(){
         System.out.println(Utils.getUid());
+    }
+
+    @Test
+    public void testJWT(){
+//        System.out.println(JWTUtil.generToken("123","bl","test"));
+        System.out.println(JWTUtil.verify("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjMiLCJpYXQiOjE1NTcxMjY2NjIsInN1YiI6InRlc3QiLCJpc3MiOiJibCIsImV4cCI6MTU1NzEyODQ2Mn0.oLhVgJXRTGPBLFfjW6qUb1XI6JSXa-nvg8cTp0WoOc8")
+        );
     }
 }

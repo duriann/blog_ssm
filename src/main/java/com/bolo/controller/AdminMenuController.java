@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "/adminMenu")
 public class AdminMenuController {
 
     @Autowired
     private AdminMenuService adminMenuService;
 
 
-    @RequestMapping("list")
+    @RequestMapping("/admin/adminMenu/list")
     @ResponseBody
     public JSONResponse list(){
         List<AdminMenu> menus = adminMenuService.listAll();

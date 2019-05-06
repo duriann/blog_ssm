@@ -16,8 +16,13 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	<mvc:resources mapping="/statics/**" location="/statics/"/>
-	<!--<mvc:resources mapping="/index.html" location="/index.html"/>-->
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**"/>
+			<bean class="com.bolo.interceptors.TokenInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<!---aop自动代理-->
     <aop:aspectj-autoproxy/>
 
