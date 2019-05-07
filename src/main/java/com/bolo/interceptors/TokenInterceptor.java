@@ -17,19 +17,15 @@ import java.io.PrintWriter;
 public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
-        System.out.println("TokenInterceptor...");
+        System.out.println("TokenInterceptor..." + request.getRequestURI());
         String headerToken = request.getHeader("token");
         String url = request.getRequestURI();
-        System.out.println("url:" + url );
-        if (url.contains("admin")){
-            System.out.println("是admin页面。。。。");
-            if (headerToken != null && JWTUtil.verify(headerToken)==1){
-                return true;
-            }
-            responseMessage(response,response.getWriter());
-            return false;
+        System.out.println("url:" + url);
+        if (headerToken != null && JWTUtil.verify(headerToken) == 1) {
+            return true;
         }
-        return true;
+        responseMessage(response, response.getWriter());
+        return false;
     }
 
     @Override
@@ -46,7 +42,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     private void responseMessage(HttpServletResponse response, PrintWriter out) {
 
         response.setContentType("application/json; charset=utf-8");
-        String json = JSONObject.toJSONString(JSONResponse.error(-1,"token验证失败"));
+        String json = JSONObject.toJSONString(JSONResponse.error(-1, "token验证失败"));
         out.print(json);
         out.flush();
         out.close();

@@ -16,10 +16,11 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	<mvc:resources mapping="/statics/**" location="/statics/"/>
-
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**"/>
+			<!--这个/admin是前端的路由 不应该被拦截到-->
+			<mvc:exclude-mapping path="/admin"/>
 			<bean class="com.bolo.interceptors.TokenInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -92,7 +92,7 @@ public class UserController {
      * 退出
      * @return json
      */
-    @RequestMapping(value = "/user/logout", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/user/logout", method = RequestMethod.GET)
     @ResponseBody
     public JSONResponse logout(HttpServletRequest request, String uid){
         System.out.println("uid:" + uid);
@@ -102,5 +102,5 @@ public class UserController {
             return JSONResponse.success(null,"退出成功");
         }
         return JSONResponse.error("退出失败");
-    }
+    }*/
 }

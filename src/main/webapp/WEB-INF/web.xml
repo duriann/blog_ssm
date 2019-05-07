@@ -6,6 +6,7 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+
     <error-page>
         <!--这边设置404为index.html的原因是配合vue的history模式-->
         <error-code>404</error-code>
