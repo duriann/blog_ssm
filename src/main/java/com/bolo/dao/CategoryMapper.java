@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CategoryMapper {
     @Delete({
@@ -51,4 +52,8 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> selectAll();
+
+    List<Category> getCategoryByPage(Map map);
+
+    int getCategoryTotalCount(Map map);
 }

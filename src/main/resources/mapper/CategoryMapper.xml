@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bolo.dao.CategoryMapper">
+
   <resultMap id="BaseResultMap" type="com.bolo.entitys.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="url" jdbcType="VARCHAR" property="url" />
@@ -8,7 +9,22 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
-    <result column="create_ime" jdbcType="TIMESTAMP" property="createIme" />
+    <result column="parent_url" jdbcType="VARCHAR" property="parentUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+
+  </resultMap>
+
+
+  <!--树形结构result-->
+  <resultMap id="TreeBaseResultMap" type="com.bolo.entitys.Category">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="isNav" jdbcType="INTEGER" property="isNav" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <collection property="children" javaType="java.util.ArrayList" column="id"
                 ofType="Category" select="childrenSelect"/>
@@ -21,7 +37,6 @@
     <result column="isNav" jdbcType="INTEGER" property="isNav" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
-    <result column="path" property="path" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
@@ -30,7 +45,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, name, url, isNav, level, parent_id, create_ime, update_time
+    id, name, url, isNav, level,sort, parent_id,parent_url, create_time, update_time
   </sql>
 
   <select id="childrenSelect" resultMap="childrenResult">
@@ -41,7 +56,7 @@
   </select>
 
   <!--树形结构获取所有分类-->
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" resultMap="TreeBaseResultMap">
 
     select
     <include refid="Base_Column_List"/>
@@ -50,6 +65,26 @@
 
   </select>
 
+
+  <select id="getCategoryByPage" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List"/>
+    from category
+    <if test="keyword != null">
+      where name like #{keyword}
+    </if>
+
+    LIMIT ${(currPage-1)*pageSize},${pageSize}
+  </select>
+  <select id="getCategoryTotalCount" resultType="int" parameterType="map">
+    select
+    count(id)
+    from category
+    <if test="keyword != null">
+      where name like #{keyword}
+    </if>
+  </select>
+  
   <insert id="insertSelective" parameterType="com.bolo.entitys.Category">
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides=",">

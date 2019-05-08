@@ -7,6 +7,7 @@
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <collection property="children" javaType="java.util.ArrayList" column="id"
@@ -19,6 +20,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
@@ -29,14 +31,14 @@
 
 
   <sql id="Base_Column_List" >
-    id, name, level, path,parent_id, create_time, update_time
+    id, name, level, path, sort,parent_id, create_time, update_time
   </sql>
 
   <select id="childrenSelect" resultMap="childrenResult">
     SELECT <include refid="Base_Column_List" />
     FROM admin_menu
     WHERE parent_id = #{id}
-    ORDER BY ID ASC
+    ORDER BY sort ASC
   </select>
 
   <select id="selectAll" resultMap="BaseResultMap">

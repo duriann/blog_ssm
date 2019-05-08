@@ -8,17 +8,27 @@ public class AdminMenu {
 
     private String name;
 
-    private Integer level;
+    private Integer level;//等级
 
-    private Integer parentId;
+    private Integer parentId;//父级id
 
     private Date createTime;
 
     private Date updateTime;
 
-    private List<AdminMenu> children;
+    private List<AdminMenu> children;//子节点
 
-    private String path;
+    private String path;//url
+
+    private int sort;//排序号
+
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
 
     public String getPath() {
         return path;

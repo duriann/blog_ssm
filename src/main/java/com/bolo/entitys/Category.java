@@ -6,7 +6,17 @@ import java.util.List;
 public class Category {
     private Integer id;
 
-    private Integer isNav;
+    private Integer isNav;//是否是导航
+
+    private Integer sort;//排序号
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
 
     private String url;//作为导航需要的url
 
@@ -42,7 +52,7 @@ public class Category {
         this.parentUrl = parentUrl;
     }
 
-    private Date createIme;
+    private Date createTime;
 
     private Date updateTime;
 
@@ -88,12 +98,12 @@ public class Category {
         this.parentId = parentId;
     }
 
-    public Date getCreateIme() {
-        return createIme;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateIme(Date createIme) {
-        this.createIme = createIme;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getUpdateTime() {
