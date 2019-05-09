@@ -100,8 +100,20 @@
       <if test="parentId != null">
         parent_id,
       </if>
-      <if test="createIme != null">
-        create_ime,
+      <if test="isNav != null">
+        isNav,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="parentUrl != null">
+        parent_url,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="createTime != null">
+        create_time,
       </if>
       <if test="updateTime != null">
         update_time,
@@ -120,8 +132,20 @@
       <if test="parentId != null">
         #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="createIme != null">
-        #{createIme,jdbcType=TIMESTAMP},
+      <if test="isNav != null">
+        #{isNav,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="parentUrl != null">
+        #{parentUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
@@ -140,8 +164,8 @@
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="createIme != null">
-        create_ime = #{createIme,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        create_time = #{createIme,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},

@@ -1,7 +1,7 @@
 package com.bolo.entitys;
 
 public class JSONResponse {
-    private int code;//0 成功 1失败 -1 没有权限
+    private int code;//0 成功 1失败 -1 没有权限 -2 token验证失败
     private String msg;
     private Object data;
 

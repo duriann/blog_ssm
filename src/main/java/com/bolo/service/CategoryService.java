@@ -13,5 +13,5 @@ public interface CategoryService {
 
     Page<Category> listByPage(String keyword, int currPage, int pageSize);
 
-
+    int add(Category category);
 }

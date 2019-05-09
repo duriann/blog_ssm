@@ -22,7 +22,7 @@ public class JWTUtil {
     //一旦得到该密钥也就可以伪造token了
 
     //代表token的有效时间 默认7天,
-    public final static long keeptime = 10080000;
+    public final static long keeptime = 604800000;
 
 
     public final static int state = 1; //token 状态: 1正常 2过期 3验证失败
@@ -84,6 +84,7 @@ public class JWTUtil {
             long expMillis = nowMillis + ttlMillis;
 
             Date exp = new Date(expMillis);
+            System.out.println("过期时间:"+exp);
 
             builder.setExpiration(exp);
 
@@ -142,10 +143,10 @@ public class JWTUtil {
                     .parseClaimsJws(token);
         }catch (ExpiredJwtException expireException){
             System.out.println("token过期啦");
-            return 2;
+            return -2;
         }catch (SignatureException signatureException){
             System.out.println("token验证失败");
-            return 3;
+            return -3;
         }
         return 1;
     }

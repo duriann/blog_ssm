@@ -44,4 +44,9 @@ public class CategoryServiceImpl implements CategoryService {
         return page;
     }
 
+    @Override
+    public int add(Category category) {
+        return categoryMapper.insertSelective(category);
+    }
+
 }
