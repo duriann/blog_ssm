@@ -49,4 +49,14 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.insertSelective(category);
     }
 
+    @Override
+    public int update(Category category) {
+        return categoryMapper.updateByPrimaryKeySelective(category);
+    }
+
+    @Override
+    public int delete(Integer id) {
+        return categoryMapper.deleteByPrimaryKey(id);
+    }
+
 }

@@ -19,8 +19,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         System.out.println("TokenInterceptor..." + request.getRequestURI());
         String headerToken = request.getHeader("token");
-        String url = request.getRequestURI();
-        System.out.println("url:" + url);
+
         int code = JWTUtil.verify(headerToken);
         if (headerToken != null && code == 1) {
             return true;
@@ -42,7 +41,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     //请求不通过，返回错误信息给客户端
     private void responseMessage(HttpServletResponse response, int code, PrintWriter out) {
         String errMsg = "token验证失败QAQ";
-        if(code == 2){
+        if(code == -2){
             errMsg = "token过期,请重新登录QAQ";
         }
         response.setContentType("application/json; charset=utf-8");

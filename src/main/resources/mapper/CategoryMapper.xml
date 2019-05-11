@@ -164,6 +164,18 @@
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
+      <if test="parentUrl != null">
+        parent_url = #{parentUrl,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=INTEGER},
+      </if>
+      <if test="isNav!= null">
+        isNav = #{isNav,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null">
         create_time = #{createIme,jdbcType=TIMESTAMP},
       </if>

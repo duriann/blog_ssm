@@ -138,6 +138,9 @@ public class JWTUtil {
      * @return 状态值 1正常 2过期 3验证失败
      */
     public static int verify(String token){
+        if(token == ""|| "".equals(token) || token == null ){
+            return -3;
+        }
         try{
             Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(sercetKey))
                     .parseClaimsJws(token);
