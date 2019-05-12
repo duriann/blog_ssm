@@ -36,33 +36,17 @@ public class CategoryController {
 
     /**
      * 添加分类
-     * @param param
+     * @param
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/admin/category/add",method = RequestMethod.POST)
-    public JSONResponse add(@RequestBody String param){
-        System.out.println("param " + param);
-        Map obj = (Map) JSON.parse(param);
-        Integer id = null;
-
-        if(obj.containsKey("id")){
-            id = (int)obj.get("id");
-        }
-        Category category = new Category();
-
-        category.setName((String)obj.get("name"));
-        category.setIsNav((int)obj.get("isNav"));
-        category.setLevel((int)obj.get("level"));
-        category.setParentId((int)obj.get("parentId"));
-        category.setParentUrl((String)obj.get("parentUrl"));
-        category.setUrl((String)obj.get("url"));
-        category.setSort((int)obj.get("sort"));
+    public JSONResponse add(@RequestBody Category category){
+        System.out.println("param " + category);
         int code;
         String successMsg = "添加成功";
         String errMsg = "添加失败";
-        if(id!=null){
-            category.setId(id);
+        if(category.getId()!=null){
             code = categoryService.update(category);
             successMsg = "更新成功";
             errMsg = "更新失败";

@@ -150,6 +150,9 @@ public class JWTUtil {
         }catch (SignatureException signatureException){
             System.out.println("token验证失败");
             return -3;
+        }catch (Exception e){
+            System.out.println("token格式都不对!");
+            return -3;
         }
         return 1;
     }

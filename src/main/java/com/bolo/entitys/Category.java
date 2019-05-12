@@ -110,6 +110,23 @@ public class Category {
         return updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", isNav=" + isNav +
+                ", sort=" + sort +
+                ", url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", level=" + level +
+                ", parentId=" + parentId +
+                ", parentUrl='" + parentUrl + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", children=" + children +
+                '}';
+    }
+
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
