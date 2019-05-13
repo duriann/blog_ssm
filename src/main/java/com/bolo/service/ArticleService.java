@@ -6,10 +6,25 @@ import com.bolo.entitys.Page;
 import java.util.List;
 
 
-public interface ArticleService {
-    int addArticle(Article article);
-    Page<Article> listByPage(String keyword, int currPage, int pageSize,Integer categoryId,Integer parentId);
+public interface ArticleService extends BaseService<Article>{
     List<Article> getById(int id);
     List<Article> selectRecent();
 
+    @Override
+    int add(Article article);
+
+    @Override
+    int delete(int id);
+
+    @Override
+    int update(Article article);
+
+    @Override
+    Page<Article> listByPage(String keyword, int currPage, int pageSize, Object... params);
+
+    @Override
+    Article get(int id);
+
+    @Override
+    List<Article> listAll();
 }

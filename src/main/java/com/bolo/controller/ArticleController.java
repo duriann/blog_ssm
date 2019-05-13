@@ -5,12 +5,10 @@ import com.bolo.entitys.Article;
 import com.bolo.entitys.JSONResponse;
 import com.bolo.entitys.Page;
 import com.bolo.service.ArticleService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -48,7 +46,7 @@ public class ArticleController {
         article.setAuthor("admin");
         article.setCategoryId((int) obj.get("categoryId"));
         article.setContent((String) obj.get("content"));
-        int code = articleService.addArticle(article);
+        int code = articleService.add(article);
         if (code == 1) {
             return JSONResponse.success(null, "发表成功!");
         }
@@ -63,6 +61,7 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/article/listByPage", method = RequestMethod.GET)
     public JSONResponse listByPage(String keyword, int currPage, int pageSize, Integer categoryId, Integer parentId) {
+        System.out.println("categoryId" + categoryId + "parentId" + parentId);
         Page<Article> users = articleService.listByPage(keyword, currPage, pageSize, categoryId, parentId);
         return JSONResponse.success(users);
     }
@@ -80,4 +79,18 @@ public class ArticleController {
         return JSONResponse.success(article);
     }
 
+    /**
+     * 根据id删除文章
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/admin/article/delete", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
+    public JSONResponse get(@RequestBody Map map) {
+        int id = articleService.delete((int) map.get("id"));
+        if (id == 0) {
+            return JSONResponse.error("删除失败QAQ");
+        }
+        return JSONResponse.success("删除成功");
+    }
 }
