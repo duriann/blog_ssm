@@ -8,6 +8,9 @@ import com.bolo.utils.Utils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * 测试
@@ -15,6 +18,14 @@ import org.junit.Test;
  * @author pineapple
  **/
 public class TestCase {
+
+    @Test
+    public void testDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String time = sdf.format(System.currentTimeMillis());
+        System.out.println(time);
+    }
+
     @Test
     public void testMd5() {
         String md5Name = DigestUtils.md5Hex("test");

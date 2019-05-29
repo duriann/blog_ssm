@@ -46,6 +46,7 @@ public class ArticleController {
         article.setAuthor("admin");
         article.setCategoryId((int) obj.get("categoryId"));
         article.setContent((String) obj.get("content"));
+        article.setHeadImg((String)obj.get("headImg"));
         int code = articleService.add(article);
         if (code == 1) {
             return JSONResponse.success(null, "发表成功!");

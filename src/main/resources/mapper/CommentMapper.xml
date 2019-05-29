@@ -35,7 +35,7 @@
   <select id="selectCommentsByArticleId" resultMap="BaseResultMap" parameterType="int">
     select <include refid="Base_Column_List"/>
     from comment
-    where article_id = #{id}
+    where article_id = #{id} and parent_id is null
   </select>
   <select id="childrenSelect" resultMap="childrenResult">
     select <include refid="Base_Column_List"/>

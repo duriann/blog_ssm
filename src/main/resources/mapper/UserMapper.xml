@@ -24,7 +24,7 @@
 
     <select id="login" resultType="User" parameterType="map">
         select
-        uid,name,nickname,create_time,update_time
+        id,uid,name,nickname,create_time,update_time
         from user
         where name = #{username} and password = #{password}
 

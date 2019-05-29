@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/file")
@@ -28,19 +29,21 @@ public class FileController {
 
         String path = System.getProperty("webapp.path");
         System.out.println("path" + path);
+        String timeStr = new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis());
         try {
-            String filePath = path+ "statics/images/";
+            String filePath = path+ "statics/images/"+ timeStr;
             File dir = new File(filePath);
             if (!dir.exists()){
                 dir.mkdirs();
             }
-            file.transferTo(new File(filePath + file.getOriginalFilename()));
+            System.out.println("filepath: "+ filePath);
+            file.transferTo(new File(filePath + File.separator + file.getOriginalFilename()));
 
             com.bolo.entitys.File fl = new com.bolo.entitys.File();
             fl.setName(file.getOriginalFilename());
-            fl.setPath("statics/images/" + file.getOriginalFilename());
+            fl.setPath("statics/images/" +timeStr + File.separator + file.getOriginalFilename());
             fileService.addFile(fl);
-            return JSONResponse.success("/statics/images/" + file.getOriginalFilename(),"上传成功!");
+            return JSONResponse.success("/statics/images/"+timeStr+File.separator + file.getOriginalFilename(),"上传成功!");
         }catch (Exception e){
             System.out.println(e);
             return JSONResponse.error("上传失败!");
