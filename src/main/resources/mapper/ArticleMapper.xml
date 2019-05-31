@@ -48,7 +48,7 @@
         left join comment co on co.article_id = a.id
 
         <if test="keyword != null">
-            where name like #{keyword}
+            where title like #{keyword}
         </if>
         <if test="parentId != null">
             where category_id in (select id from category where parent_id = #{parentId})
@@ -66,7 +66,7 @@
         count(id)
         from article
         <if test="keyword != null">
-            where name like #{keyword}
+            where title like #{keyword}
         </if>
         <if test="parentId != null">
             where category_id in (select id from category where parent_id = #{parentId})

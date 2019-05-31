@@ -45,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
     public Page<Article> listByPage(String keyword, int currPage, int pageSize, Object ...params) {
         Map<String, Object> map = new HashMap<>();
         if (keyword != null && !"".equals(keyword)) {
-            keyword = keyword + "%";
+            keyword = "%" + keyword + "%";
             map.put("keyword", keyword);
         }
         if (params[0] != null) {

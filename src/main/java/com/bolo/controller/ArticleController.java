@@ -62,9 +62,9 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/article/listByPage", method = RequestMethod.GET)
     public JSONResponse listByPage(String keyword, int currPage, int pageSize, Integer categoryId, Integer parentId) {
-        System.out.println("categoryId" + categoryId + "parentId" + parentId);
-        Page<Article> users = articleService.listByPage(keyword, currPage, pageSize, categoryId, parentId);
-        return JSONResponse.success(users);
+        System.out.println("keyword:"+ keyword +"categoryId" + categoryId + "parentId" + parentId);
+        Page<Article> articles = articleService.listByPage(keyword, currPage, pageSize, categoryId, parentId);
+        return JSONResponse.success(articles);
     }
 
 
